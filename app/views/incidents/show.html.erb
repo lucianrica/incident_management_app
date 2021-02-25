@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @incident.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @incident.content %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @incident.priority %>
+</p>
+
+<p>
+  <strong>Resolution:</strong>
+  <%= @incident.resolution %>
+</p>
+
+<p>
+  <strong>Solved:</strong>
+  <%= @incident.solved %>
+</p>
+
+<%= link_to 'Edit', edit_incident_path(@incident) %> |
+<%= link_to 'Back', incidents_path %>
