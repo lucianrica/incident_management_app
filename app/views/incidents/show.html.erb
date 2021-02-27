@@ -1,29 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="columns">
+  <div class="column is-8">
+    <h1 class="title is-2 has-text-grey incident-title"><%= @incident.title %></h1>
+    <h3 class="subtitle is-5 has-text-grey-lighter">by <%= @incident.user.username %> in <%= link_to @incident.channel.channel, @incident.channel %></h3>
+    <div class="level">
+      <div class="level-left"></div>
+      <div class="level-right">
+        <% if incident_author(@incident) %>
+          <div class="buttons">
+              <%= link_to 'Edit Incident', edit_incident_path(@incident), class:'button'%>
+              <%= link_to 'Delete', incident_path(@incident), method: :delete, data: { confirm: "Delete incident?" }, class:'button' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="content"><%= markdown(@incident.content) %></div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @incident.title %>
-</p>
+    <h2 class="subtitle is-5 has-text-grey"><%= @incident.replies.count %> Replies</h2>
 
-<p>
-  <strong>Content:</strong>
-  <%= @incident.content %>
-</p>
+    <div id="incident-replies">
+      <%= render @incident.replies %>
+    </div>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @incident.priority %>
-</p>
+    <hr />
 
-<p>
-  <strong>Resolution:</strong>
-  <%= @incident.resolution %>
-</p>
+    <h3 class="subtitle is-3 has-text-grey">Leave a reply</h3>
+    <% if user_signed_in? %>
+      <%= render 'replies/form' %>
+    <% else %>
+    <p>To reply you need to <%= link_to 'login', new_user_session_path %>. Don't have an account?
+      <%= link_to 'Sign up', new_user_registration_path %> for one.</p>
+    <% end %>
 
-<p>
-  <strong>Solved:</strong>
-  <%= @incident.solved %>
-</p>
+  </div>
 
-<%= link_to 'Edit', edit_incident_path(@incident) %> |
-<%= link_to 'Back', incidents_path %>
+  <%= render 'sidebar' %>
+
+</div>

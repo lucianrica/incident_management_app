@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :incidents
+  resources :channels
+  resources :incidents do
+    resources :replies
+  end
+
   root 'incidents#index'
 
   devise_for :users, controllers: { registrations: 'registrations' }

@@ -1,35 +1,5 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Incidents</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Priority</th>
-      <th>Resolution</th>
-      <th>Solved</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @incidents.each do |incident| %>
-      <tr>
-        <td><%= incident.title %></td>
-        <td><%= incident.content %></td>
-        <td><%= incident.priority %></td>
-        <td><%= incident.resolution %></td>
-        <td><%= incident.solved %></td>
-        <td><%= link_to 'Show', incident %></td>
-        <td><%= link_to 'Edit', edit_incident_path(incident) %></td>
-        <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Incident', new_incident_path %>
+<div class="columns">
+  <%= render 'shared/incidents' %>
+  <%= render 'sidebar' %>
+</div>

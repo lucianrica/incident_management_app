@@ -26,7 +26,7 @@
      <nav class="navbar is-light" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <%= link_to root_path, class:"navbar-item" do %>
-          <h1 class="title is-5">Discussions</h1>
+          <h1 class="title is-5">Incident Management</h1>
         <% end  %>
       <div class="navbar-burger burger" data-target="navbar">
         <span></span>
@@ -40,7 +40,7 @@
           <% if user_signed_in? %>
           <div class="navbar-item">
             <div class="field is-grouped">
-              <%= link_to 'New Discussion', '#', class:"button is-info" %>
+              <%= link_to 'New Incident', new_incident_path, class:"button is-info" %>
             </div>
           </div>
           <div class="navbar-item has-dropdown is-hoverable">
@@ -55,7 +55,7 @@
           <div class="field is-grouped">
 
             <p class="control">
-              <%= link_to 'New Discussion', '#', class:"button is-info" %>
+              <%= link_to 'New Incident', new_incident_path, class:"button is-info" %>
             </p>
 
             <p class="control">
