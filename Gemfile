@@ -36,7 +36,7 @@ gem 'cancancan', '~> 3.2', '>= 3.2.1'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'redcarpet', '~> 3.5', '>= 3.5.1'
 gem 'coderay', '~> 1.1', '>= 1.1.3'
-gem 'wdm', '>= 0.1.0'
+
 
 
 
@@ -61,6 +61,7 @@ group :development do
   gem 'spring', '~> 2.1', '>= 2.1.1'
   gem 'spring-watcher-listen', '~> 2.0', '>= 2.0.1'
   gem 'listen', '~> 3.4', '>= 3.4.1'
+  gem 'wdm', '>= 0.1.0'
 end
 
 group :test do
