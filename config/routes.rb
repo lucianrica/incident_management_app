@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :replies
   end
 
-  root 'incidents#index'
+  root 'home#index'
 
   devise_for :users, controllers: { registrations: 'registrations' }
   

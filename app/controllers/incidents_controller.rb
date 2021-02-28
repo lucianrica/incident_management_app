@@ -16,7 +16,7 @@ class IncidentsController < ApplicationController
   end
 
   # GET /incidents/new
-  def new
+  def new    
     @incident = current_user.incidents.build
   end
 

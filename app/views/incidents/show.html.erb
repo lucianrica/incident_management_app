@@ -1,38 +1,65 @@
-<div class="columns">
-  <div class="column is-8">
-    <h1 class="title is-2 has-text-grey incident-title"><%= @incident.title %></h1>
-    <h3 class="subtitle is-5 has-text-grey-lighter">by <%= @incident.user.username %> in <%= link_to @incident.channel.channel, @incident.channel %></h3>
-    <div class="level">
-      <div class="level-left"></div>
-      <div class="level-right">
-        <% if incident_author(@incident) %>
-          <div class="buttons">
-              <%= link_to 'Edit Incident', edit_incident_path(@incident), class:'button'%>
-              <%= link_to 'Delete', incident_path(@incident), method: :delete, data: { confirm: "Delete incident?" }, class:'button' %>
+
+
+<div class="column is-12">
+    
+
+      <article class="message is-light is-small mt-6">
+        
+          <div class="message-header">
+            <p class="ml-1 fa-lg"> <strong><%= @incident.title %></strong></p>
+            <%= gravatar_image_tag(@incident.user.email, class:'border-radius-50', size: 48, alt: @incident.user.username) %>            
           </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="content"><%= markdown(@incident.content) %></div>
+        
 
-    <h2 class="subtitle is-5 has-text-grey"><%= @incident.replies.count %> Replies</h2>
+        <div class="message-body">
+          <%= markdown(@incident.content) %> 
+          <% if incident_author(@incident) || has_role?(:admin) %>
+            <div class="column has-text-right">
+              <%= link_to 'Edit  ', edit_incident_path(@incident), class:'button is-dark' %>
+              <%= link_to 'Delete', incident_path(@incident), method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-danger" %>
+            </div>
+          <% end %>  
+          <div style="background: #fff; padding: 10px; color: #333">
+            <p>
+              <em>              
+                <small>Posted <%= time_ago_in_words(@incident.created_at) %> ago in
+                  <% if @incident.channel %>
+                    <%= link_to @incident.channel.channel, @incident.channel %>
+                  <% end %>
+                  by <%= @incident.user.username %>
+                </small>
+                <% if @incident.replies.count > 0 %><br>
+                  <span class="tag is-light"><%= @incident.replies.count %> Replies</span>
+                <% end %>
+              </em>
+            </p>           
+          </div>       
+        </div>
+      </article>
 
-    <div id="incident-replies">
-      <%= render @incident.replies %>
-    </div>
 
-    <hr />
+    
+  </div>
 
-    <h3 class="subtitle is-3 has-text-grey">Leave a reply</h3>
+<div class="column is-11 mt-6 is-pulled-right">
+  <div id="incident-replies">
+    <%= render @incident.replies %>
+    <hr>
+  </div>
+</div>
+
+<div class="column is-12 mt-6 mb-6 is-pulled-right">
+  
+
+    <h3 class="subtitle is-3 has-text-warning-dark">Leave a reply</h3>
     <% if user_signed_in? %>
       <%= render 'replies/form' %>
     <% else %>
     <p>To reply you need to <%= link_to 'login', new_user_session_path %>. Don't have an account?
       <%= link_to 'Sign up', new_user_registration_path %> for one.</p>
     <% end %>
-
-  </div>
-
-  <%= render 'sidebar' %>
-
 </div>
+
+
+
+

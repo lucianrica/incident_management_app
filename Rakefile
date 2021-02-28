@@ -1,6 +1,5 @@
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+# Rake is a software task management and build automation tool. It allows the user to 
+# specify tasks and describe dependencies as well as to group tasks in a namespace.
 
 require_relative "config/application"
-
 Rails.application.load_tasks

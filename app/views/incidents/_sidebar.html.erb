@@ -1,17 +1,22 @@
-<div class="column is-3 is-offset-1">
-  <h3 class="title is-5 has-text-grey-light">Channels</h3>
+<div class="column is-3 mt-6">
+  
+  <aside class="menu">
+    <ul class="menu-list">
+      <li>
+        <a class="is-active">All Channels</a>
+        <ul>
+          <% @channels.each do |c| %>
+            <li><%= link_to c.channel, c %></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
 
-  <ul class="list">
-    <% @channels.each do |c| %>
-    <li><%= link_to c.channel, c %></li>
+    <% if has_role?(:admin) %>
+      <p class="menu-label"> Dashboard </p>
+      <ul class="menu-list">
+        <li><a href="<%= new_channel_path %>">New Channel</a></li>
+      </ul>
     <% end %>
-  </ul>
-
-  <br/>
-
-
-  <% if has_role?(:admin) %>
-    <%= link_to 'New Channel', new_channel_path, class:'button is-info' %>
-  <% end %>
-
+  </aside>
 </div>
